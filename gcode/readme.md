@@ -5,3 +5,5 @@ put gcode.inx and gcode.py in C:\Program Files\Inkscape\share\inkscape\extension
 put gcode.inx and gcode.py in C:\Users\YOUR_NAME_ADMIN\AppData\Roaming\inkscape\extensions(after need to restart Inkscape)
 
 after execute extension will find file gcode.nc in this folder C:\Users\YOUR_NAME_ADMIN\AppData\Roaming\inkscape\extensions
+
+gcode.nc will be rewrite any time
