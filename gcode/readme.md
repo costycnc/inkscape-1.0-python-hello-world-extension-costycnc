@@ -9,3 +9,5 @@ put gcode.inx and gcode.py in C:\Users\YOUR_NAME_ADMIN\AppData\Roaming\inkscape\
 after execute extension will find file gcode.nc in this folder C:\Users\YOUR_NAME_ADMIN\AppData\Roaming\inkscape\extensions
 
 gcode.nc will be rewrite any time
+
+you find this extension in Inskape in Menu > Estensions > helloworld > gcode ( if not find this extensions in Menu ... mean that something go wrong!!!)
