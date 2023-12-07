@@ -1,13 +1,12 @@
 import inkex
-from inkex.elements import Group, PathElement
+from inkex.elements import Group, PathElement, Line
 
 class hello_world(inkex.EffectExtension):
 
     def effect(self):
+        #create layer
         layer = self.svg.add(Group.new('my_label', is_layer=True))
-        layer.append(self.make_a_shape()) 
-
-    def make_a_shape(self):
+        #create shape
         my_shape = PathElement()
         # You can set the path through many different methods.
         # Lists of numbers, pythonic objects, Cubic curves etc.
@@ -15,7 +14,12 @@ class hello_world(inkex.EffectExtension):
         # Transform can be modified in many ways too
         my_shape.transform.add_translate(self.svg.namedview.center)        
         my_shape.style="fill:red"
-        return my_shape
+        #create line
+        line1 = layer.add(Line(x1='0', y1= '0', x2='100', y2='100'))
+        line1.style = {'stroke-width': 3, 'stroke': 'blue'}   
+        #delete all elements
+        #for node in self.svg.xpath('//svg:path'):
+            #node.delete()
 
 if __name__ == '__main__':
     hello_world().run()
