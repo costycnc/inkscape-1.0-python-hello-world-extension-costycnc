@@ -4,7 +4,6 @@ from inkex.elements import Group, PathElement
 class hello_world(inkex.EffectExtension):
 
     def effect(self):
-        self.msg("Tutorial -you first extension hello world!")
         layer = self.svg.add(Group.new('my_label', is_layer=True))
         layer.append(self.make_a_shape()) 
 
