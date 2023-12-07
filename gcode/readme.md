@@ -1,3 +1,5 @@
+Need use function Menu > Path >Object to path (or stroke to path or bitmap to path) if your object is not path
+
 Convert Path to gcode 3 axis machine X,Y,Z
 
 put gcode.inx and gcode.py in C:\Program Files\Inkscape\share\inkscape\extensions but if can give a error that file can not be write
