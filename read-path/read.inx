@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+<name>Read</name>
+  <id>org.inkscape.tutorial.read</id>
+  
+  <effect>
+    <effects-menu>
+      <submenu name="Hello"/>
+    </effects-menu>
+  </effect>
+  <script>
+    <command location="inx" interpreter="python">read.py</command>
+  </script>
+</inkscape-extension>
