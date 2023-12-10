@@ -1,4 +1,8 @@
+import inkex
 from inkex.elements import PathElement
+
+
+
 
 class tutorial(inkex.EffectExtension):
 
