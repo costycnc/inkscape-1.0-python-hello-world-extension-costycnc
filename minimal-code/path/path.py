@@ -1,9 +1,4 @@
-import inkex,sys,math,time,ctypes
-from inkex import bezier
-from inkex.elements import Group, Line,Circle,PathElement
-
-
-
+from inkex.elements import PathElement
 
 class tutorial(inkex.EffectExtension):
 
