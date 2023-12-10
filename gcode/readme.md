@@ -1,3 +1,7 @@
+This is an practical example for whose that want to learn the base of inkscape extension and transform a vectorial image to gcode!
+
+Is not a finished and solid program ... is only a tutorial example with minimal lines of codes!
+
 Need use function Menu > Path >Object to path (or stroke to path or bitmap to path) if your object is not path
 
 Convert Path to gcode 3 axis machine X,Y,Z
