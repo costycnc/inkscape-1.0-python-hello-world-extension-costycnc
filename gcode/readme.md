@@ -16,4 +16,4 @@ gcode.nc will be rewrite any time
 
 you find this extension in Inskape in Menu > Estensions > helloworld > gcode ( if not find this extensions in Menu ... mean that something go wrong!!!)
 
-Code is sample so i dont know that is difficult to add custom commands like M03,M05,S1000,ecc
+Code is very sample so... is very easy to add some custom commands like M03,M05,S1000,ecc
