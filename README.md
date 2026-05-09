@@ -1,6 +1,3 @@
-Ecco il **README completo** per la tua estensione "Hello World" di Inkscape.
-
----
 
 # Inkscape Hello World Extension - Tutorial Example
 
