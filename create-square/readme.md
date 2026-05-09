@@ -114,6 +114,127 @@ You will see:
 
 costycnc
 
+Perfetto 👍 ti preparo una versione **molto più professionale, pulita e “da progetto serio”** del tuo README, già pronta da incollare su GitHub.
+
+---
+
+# 🟦 Inkscape Python Extension – Create Square (Educational Example)
+
+This project is a minimal educational extension for Inkscape 1.0+, written in Python using the `inkex` API.
+
+It demonstrates how to create vector graphics programmatically by generating a simple scene composed of a square and a line inside a new layer.
+
+---
+
+## 🧩 What this extension does
+
+When executed, this extension:
+
+* Creates a new SVG layer
+* Draws a **red square** using a path element
+* Adds a **blue diagonal line** across the square
+* Centers the drawing in the current document
+
+The result is a simple but complete example of SVG generation using Python.
+
+---
+
+## 🧠 Core concept
+
+The square is defined using an SVG path:
+
+```python
+M 0 0 L 0 100 L 100 100 L 100 0 z
+```
+
+This represents a closed rectangle drawn using SVG path commands.
+
+---
+
+## 🎯 Visual result
+
+After running the extension in Inkscape, you will get the following output:
+
+```html
+<img src="https://raw.githubusercontent.com/costycnc/inkscape-1.0-python-hello-world-extension-costycnc/main/create-square/square.jpg">
+```
+
+👉 A red square with a blue diagonal line inside a newly created layer.
+
+---
+
+## 🧱 SVG structure inspection
+
+You can inspect the generated SVG structure directly inside Inkscape:
+
+> Go to **Edit → XML Editor**
+
+in Inkscape
+
+This allows you to see how the Python code translates into real SVG elements.
+
+---
+
+## 📦 Files included
+
+* `square.py` → Python extension logic
+* `square.inx` → Inkscape extension definition
+* `square.jpg` → visual output example
+* `editor.jpg` → XML structure preview
+
+---
+
+## 🛠 Installation
+
+Copy the files:
+
+* `square.inx`
+* `square.py`
+
+into the Inkscape extensions folder:
+
+```text
+C:\Program Files\Inkscape\share\inkscape\extensions
+```
+
+Then restart Inkscape.
+
+---
+
+## 🎯 Purpose
+
+This project is designed as a **learning resource** for:
+
+* Understanding Inkscape extension architecture
+* Learning the `inkex` Python API
+* Generating SVG elements programmatically
+* Creating simple automation tools for vector graphics
+
+---
+
+## 👤 Author
+
+costycnc
+
+---
+
+## 🚀 Possible improvements
+
+* Add UI parameters (input fields in Inkscape)
+* Generate dynamic shapes
+* Create reusable drawing tools
+* Expand into a full extension framework
+
+---
+
+Se vuoi, nel prossimo step posso aiutarti a fare una cosa ancora più potente:
+
+👉 trasformare questo in una **serie di 3-5 tutorial GitHub (tipo corso completo Inkscape + Python)**
+👉 oppure renderlo “official-looking” stile plugin open source usato davvero
+
+Dimmi 👍
+
+
 
 
 
