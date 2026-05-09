@@ -1,6 +1,3 @@
-Here is the **complete README** for your minimal Inkscape extension examples for creating **Line** and **Path** elements.
-
----
 
 # Inkscape Minimal Extension - Line & Path Examples
 
