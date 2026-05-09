@@ -1,75 +1,75 @@
 
-# Inkscape G-code Generator - Esempio Didattico
+# Inkscape G-code Generator - Tutorial Example
 
 ![Inkscape](https://img.shields.io/badge/Inkscape-1.0+-blue.svg) ![Python](https://img.shields.io/badge/Python-3.x-green.svg) ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-## 📖 Descrizione
+## 📖 Description
 
-Questo è un **esempio pratico** per chi vuole imparare le basi delle **estensioni di Inkscape** e trasformare un'immagine vettoriale in **G-code** per macchine a 3 assi (X, Y, Z).
+This is a **practical example** for those who want to learn the basics of **Inkscape extensions** and transform a vector image into **G-code** for 3-axis machines (X, Y, Z).
 
-> **⚠️ IMPORTANTE:** Non è un programma finito e solido... è solo un **esempio didattico** con il minimo indispensabile di codice!
+> **⚠️ IMPORTANT:** This is NOT a finished and solid program... it is only a **tutorial example** with minimal lines of code!
 
-## 🎯 Cosa fa
+## 🎯 What it does
 
-- Converte un percorso (path) selezionato in Inkscape in **G-code**
-- Genera codice per macchine a **3 assi (X, Y, Z)**
-- Supporta comandi G-code di base (G01, G21, G90, G92)
-- Il file G-code viene salvato automaticamente
+- Converts a selected path in Inkscape to **G-code**
+- Generates code for **3-axis machines (X, Y, Z)**
+- Supports basic G-code commands (G01, G21, G90, G92)
+- Saves the G-code file automatically
 
-## 📋 Prerequisiti
+## 📋 Prerequisites
 
-Prima di usare l'estensione, assicurati che il tuo oggetto sia un **percorso (path)**. Se non lo è, convertilo usando:
+Before using this extension, make sure your object is a **path**. If not, convert it using:
 
 ```
 Menu > Path > Object to Path
 ```
-(opzioni alternative: `Stroke to Path` o `Bitmap to Path`)
+(Alternative options: `Stroke to Path` or `Bitmap to Path`)
 
-## 🚀 Installazione
+## 🚀 Installation
 
-### Metodo 1 (consigliato - estensioni utente)
-Copia i file `gcode.inx` e `gcode.py` in:
+### Method 1 (recommended - user extensions)
+Copy `gcode.inx` and `gcode.py` to:
 
 ```
-C:\Users\IL_TUO_NOME_ADMIN\AppData\Roaming\inkscape\extensions
+C:\Users\YOUR_USERNAME\AppData\Roaming\inkscape\extensions
 ```
 
-### Metodo 2 (sistema - richiede permessi admin)
-Copia i file in:
+### Method 2 (system-wide - requires admin rights)
+Copy the files to:
 
 ```
 C:\Program Files\Inkscape\share\inkscape\extensions
 ```
 
-> **Nota:** Questo metodo potrebbe dare errore di permessi di scrittura.
+> **Note:** This method may give a "file cannot be written" error.
 
-### Dopo l'installazione
-1. **Riavvia Inkscape**
-2. L'estensione apparirà in: `Menu > Estensioni > helloworld > gcode`
+### After installation
+1. **Restart Inkscape**
+2. The extension will appear in: `Menu > Extensions > helloworld > gcode`
 
-> 🔍 **Se non trovi l'estensione nel menu... significa che qualcosa è andato storto!**
+> 🔍 **If you don't find the extension in the menu... it means something went wrong!**
 
-## 💻 Come si usa
+## 💻 How to use
 
-1. **Disegna o importa** un vettoriale in Inkscape
-2. **Converti in path** se necessario (vedi Prerequisiti)
-3. **Seleziona il percorso** che vuoi convertire
-4. Vai su `Menu > Estensioni > helloworld > gcode`
-5. **Esegui l'estensione**
+1. **Draw or import** a vector image in Inkscape
+2. **Convert to path** if necessary (see Prerequisites)
+3. **Select the path** you want to convert
+4. Go to `Menu > Extensions > helloworld > gcode`
+5. **Run the extension**
 
 ## 📁 Output
 
-Dopo l'esecuzione, troverai il file `gcode.nc` nella cartella:
+After execution, you will find the `gcode.nc` file in:
 
 ```
-C:\Users\IL_TUO_NOME_ADMIN\AppData\Roaming\inkscape\extensions\gcode.nc
+C:\Users\YOUR_USERNAME\AppData\Roaming\inkscape\extensions\gcode.nc
 ```
 
-> **Nota:** Il file `gcode.nc` viene **sovrascritto** ogni volta che esegui l'estensione.
+> **Note:** The `gcode.nc` file will be **overwritten** every time you run the extension.
 
-## 🔧 Spiegazione del codice
+## 🔧 Code explanation
 
-Ecco cosa fa il tuo script passo passo:
+Here's what your script does step by step:
 
 ```python
 import inkex
@@ -77,80 +77,80 @@ from inkex import bezier
 from inkex.elements import Group, Line
 ```
 
-**Import** dei moduli necessari di Inkscape.
+**Import** the necessary Inkscape modules.
 
 ```python
 class hello(inkex.EffectExtension):
 ```
-Classe principale che eredita da `EffectExtension`.
+Main class inheriting from `EffectExtension`.
 
 ```python
 def effect(self):
 ```
-Metodo principale eseguito dall'estensione.
+Main method executed by the extension.
 
 ```python
 g = "G21 F500 G90\nG92 X0 Y0\n"
 ```
-Inizializza il G-code con:
-- `G21` = unità millimetriche
+Initializes the G-code with:
+- `G21` = millimeter units
 - `F500` = feed rate 500 mm/min
-- `G90` = posizionamento assoluto
-- `G92 X0 Y0` = imposta origine corrente
+- `G90` = absolute positioning
+- `G92 X0 Y0` = set current position as origin
 
 ```python
 current_layer = self.svg.get_current_layer()
 path_list = current_layer.xpath('./svg:path')
 ```
-Ottiene il layer corrente e trova tutti i percorsi (path) al suo interno.
+Gets the current layer and finds all paths inside it.
 
 ```python
 for path in path_list:
     csp_list = path.path.to_superpath()
     bezier.cspsubdiv(csp_list, 1)
 ```
-Per ogni path, lo converte in formato CSP (Curve Super Path) e lo suddivide per approssimare le curve.
+For each path, converts to CSP (Curve Super Path) format and subdivides it to approximate curves.
 
 ```python
 for cord in csp:
     g += "G01 X" + "{:.2f}".format(cord[0][0]) + " Y" + "{:.2f}".format(cord[0][1]) + "\n"
 ```
-Genera un comando `G01` per ogni punto del percorso, formattando le coordinate con 2 decimali.
+Generates a `G01` command for each point in the path, formatting coordinates with 2 decimal places.
 
 ```python
 with open("gcode.nc", "w") as f:
     f.write(g)
 ```
-Salva il G-code generato nel file `gcode.nc`.
+Saves the generated G-code to the `gcode.nc` file.
 
-## 🎨 Personalizzazione - Aggiungere comandi personalizzati
+## 🎨 Customization - Adding custom commands
 
-Il codice è **molto semplice e facile da modificare** per aggiungere comandi come:
+The code is **very simple and easy to modify** to add commands like:
 
 ```python
-# Aggiungi all'inizio del codice G, dopo l'inizializzazione:
-g += "M03 S1000\n"  # Accendi mandrino a 1000 RPM
-g += "G04 P2\n"      # Pausa 2 secondi
+# Add at the beginning of the G-code, after initialization:
+g += "M03 S1000\n"  # Spindle on at 1000 RPM
+g += "G04 P2\n"     # Pause 2 seconds
 
-# Aggiungi alla fine, prima di G01 X0 Y0:
-g += "M05\n"         # Spegni mandrino
-g += "M30\n"         # Fine programma
+# Add at the end, before G01 X0 Y0:
+g += "M05\n"        # Spindle off
+g += "M30\n"        # Program end
 ```
 
-### Esempi di comandi che puoi aggiungere:
+### Example commands you can add:
 
-| Comando | Funzione |
+| Command | Function |
 |---------|----------|
-| `M03 S1000` | Accendi mandrino a 1000 RPM |
-| `M05` | Spegni mandrino |
-| `M08` | Attiva liquido refrigerante |
-| `M09` | Disattiva liquido refrigerante |
-| `G04 P1` | Pausa 1 secondo |
-| `M30` | Fine programma e reset |
+| `M03 S1000` | Spindle on at 1000 RPM |
+| `M05` | Spindle off |
+| `M08` | Coolant on |
+| `M09` | Coolant off |
+| `G04 P1` | Pause 1 second |
+| `M30` | Program end and reset |
 
-## 📊 Output G-code di esempio
+## 📊 Example G-code output
 
-Ecco un esempio di cosa produce l'estensione:
+Here's an example of what the extension produces:
 
 ```gcode
 G21 F500 G90
@@ -164,39 +164,42 @@ G01 Y0
 G01 X0
 ```
 
-## ❗ Possibili problemi e soluzioni
+## ❗ Troubleshooting
 
-| Problema | Soluzione |
-|----------|-----------|
-| "No path found!" | Assicurati di avere selezionato un path (converti l'oggetto con `Object to Path`) |
-| Estensione non appare nel menu | Riavvia Inkscape o controlla la cartella di installazione |
-| Errore di permessi | Usa la cartella estensioni utente (AppData/Roaming) |
-| File gcode.nc non viene creato | Verifica i permessi di scrittura nella cartella estensioni |
-| Coordinate strane o troppo grandi | Ricontrolla che il percorso non sia in scala errata |
+| Problem | Solution |
+|---------|----------|
+| "No path found!" | Make sure you have a path selected (convert object with `Object to Path`) |
+| Extension doesn't appear in menu | Restart Inkscape or check the installation folder |
+| Permission error | Use the user extensions folder (AppData/Roaming) |
+| gcode.nc file not created | Check write permissions in the extensions folder |
+| Strange or too large coordinates | Verify your path doesn't have incorrect scale |
 
-## 🔄 Limitazioni attuali
+## 🔄 Current limitations
 
-- ❌ Non gestisce curve di Bezier (le approssima con linee rette)
-- ❌ Non supporta più layer
-- ❌ Non chiede all'utente impostazioni (feed rate, profondità Z, ecc.)
-- ❌ Non supporta movimenti ad arco (G02/G03)
+- ❌ Does not handle Bezier curves properly (approximates them with straight lines)
+- ❌ Does not support multiple layers
+- ❌ Does not ask user for settings (feed rate, Z depth, etc.)
+- ❌ Does not support arc movements (G02/G03)
 
-## 📈 Prossimi miglioramenti possibili
+## 📈 Possible future improvements
 
-- [ ] Aggiungere interfaccia utente per parametri (profondità Z, feed rate)
-- [ ] Migliorare la gestione delle curve
-- [ ] Supportare archi con G02/G03
-- [ ] Aggiungere opzione per il nome del file di output
-- [ ] Gestire più path su layer diversi
+- [ ] Add UI dialog for parameters (Z depth, feed rate)
+- [ ] Improve curve handling
+- [ ] Support arcs with G02/G03
+- [ ] Add option for output filename
+- [ ] Handle multiple paths across different layers
 
-## 📝 Licenza
+## 📝 License
 
-Questo progetto è puramente **didattico** - sentiti libero di usarlo, modificarlo e condividerlo!
+This project is purely **educational** - feel free to use, modify, and share it!
 
-## 🙏 Ringraziamenti
+## 🙏 Acknowledgments
 
-Creato come esempio per la community di Inkscape e appassionati di CNC.
+Created as an example for the Inkscape community and CNC enthusiasts.
 
 ---
+
+**Happy coding and happy CNC cutting!** 🎯⚙️
+
 
 **Buon coding e buon taglio CNC!** 🎯⚙️
